@@ -1,4 +1,4 @@
-package org.autotests;
+package org.autotests.task1;
 
 import java.util.Collections;
 import java.util.List;
