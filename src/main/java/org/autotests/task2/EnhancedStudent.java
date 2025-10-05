@@ -15,7 +15,7 @@ public class EnhancedStudent {
     private List<Integer> grades = new ArrayList<>();
 
     @Setter
-    private StudentService service;
+    StudentService service;
 
     public EnhancedStudent(String name) {
         this.name = name;
@@ -25,7 +25,6 @@ public class EnhancedStudent {
         return new ArrayList<>(grades);
     }
 
-    @SneakyThrows
     public void addGrade(int grade) {
         if (service.checkGrade(grade)) {
             grades.add(grade);
@@ -34,7 +33,6 @@ public class EnhancedStudent {
         }
     }
 
-    @SneakyThrows
     public int rating() {
         return service.getRatingForGradeSum(grades.stream().mapToInt(x->x).sum());
     }
