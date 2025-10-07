@@ -1,4 +1,4 @@
-package org.autotests;
+package org.autotests.task1;
 
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Assertions;
@@ -14,7 +14,7 @@ import java.util.List;
 @DisplayName("Юнит-тесты на класс Student")
 public class StudentTests {
 
-    private Faker faker = new Faker();
+    private final Faker faker = new Faker();
     private Student student;
 
     @BeforeEach
@@ -109,7 +109,7 @@ public class StudentTests {
 
     @DisplayName("toString()")
     @ParameterizedTest(name = "{index} - toString(), оценки: {0}")
-    @MethodSource("org.autotests.GradeSource#listsOfGrades")
+    @MethodSource("org.autotests.task1.GradeSource#listsOfGrades")
     public void toStringTest(List<Integer> grades) {
         String newName = faker.name().fullName();
         student.setName(newName);
