@@ -1,12 +1,17 @@
 package org.autotests.task8.tests;
 
 import com.codeborne.selenide.Configuration;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Issue;
 import org.autotests.task8.pom.*;
 import org.junit.jupiter.api.*;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 
+@Epic("Тесты для сайта Победы")
 @DisplayName("Pobeda Tests Selenide")
 public class PobedaSelenideTests {
 
@@ -39,6 +44,8 @@ public class PobedaSelenideTests {
     }
 
     @DisplayName("Задание №1. Page Object. Всплывающее окно - Selenide")
+    @Feature("Отображение информационного всплывающего окна")
+    @Description("Проверка отображения информационного всплывающего окна")
     @Test
     public void pobedaInformationPopupTest() {
         mainPage = new MainPageSelenide();
@@ -53,6 +60,8 @@ public class PobedaSelenideTests {
     }
 
     @DisplayName("Задание №2. Page Object. Инициирование поиска - Selenide")
+    @Feature("Поиск билета")
+    @Description("Проверка поиска билета")
     @Test
     public void pobedaSearchForFlightTest() {
         mainPage = new MainPageSelenide();
@@ -66,6 +75,9 @@ public class PobedaSelenideTests {
     }
 
     @DisplayName("Задание №3. Page Object. Результаты поиска - Selenide")
+    @Feature("Поиск заказа")
+    @Description("Проверка поиска заказа")
+    @Issue("OMBUG-1322")
     @Test
     public void pobedaSearchForTicketOrderTest() {
         mainPage = new MainPageSelenide();
