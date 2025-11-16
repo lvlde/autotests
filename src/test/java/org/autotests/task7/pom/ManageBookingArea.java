@@ -1,7 +1,5 @@
-package org.autotests.task7.pages;
+package org.autotests.task7.pom;
 
-import lombok.Getter;
-import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,15 +13,12 @@ import java.time.Duration;
 
 public class ManageBookingArea {
 
-    @Getter
     @FindBy(css = "input[placeholder='Номер бронирования или билета']")
     WebElement orderOrTicketNumberField;
 
-    @Getter
     @FindBy(css = "input[placeholder='Фамилия клиента']")
     WebElement clientLastnameField;
 
-    @Getter
     @FindBy(xpath = "//button[.//span[contains(text(), 'Поиск')]]")
     WebElement searchButton;
 
@@ -58,17 +53,15 @@ public class ManageBookingArea {
         searchButton.click();
     }
 
-    @SneakyThrows
     public void stepSearchForTicketOrder(String orderOrTicketNumber, String lastname) {
         enterLastname(lastname);
         enterOrderOrTicketNumber(orderOrTicketNumber);
 
-        //TODO fix
         //String originalWindow = driver.getWindowHandle();
         //Set<String> oldTabs = driver.getWindowHandles();
 
+        //TODO fix
         clickSearchButton();
-        Thread.sleep(30000);
 
         //new WebDriverWait(driver, Duration.ofSeconds(100))
         //        .until(driver1 -> driver1.getWindowHandles().size() > oldTabs.size());

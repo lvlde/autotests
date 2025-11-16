@@ -1,7 +1,5 @@
-package org.autotests.task7.pages;
+package org.autotests.task7.pom;
 
-import lombok.Getter;
-import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -82,7 +80,6 @@ public class SearchArea {
         clickSearchButton();
     }
 
-    @SneakyThrows
     public void stepCheckRedBorderAroundDateOfDepartureThereInputField(String expectedRedColor) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         wait.until(driver -> borderLine.getCssValue("border-color").equals(expectedRedColor));

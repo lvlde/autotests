@@ -1,6 +1,5 @@
-package org.autotests.task7.pages;
+package org.autotests.task7.pom;
 
-import lombok.Getter;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +12,6 @@ public class MainPage {
 
     WebDriver driver;
 
-    @Getter
     @FindBy(css = "img[src='/_next/static/media/logo-rus-white.b9d69d0a.svg']")
     WebElement logo;
 
@@ -33,7 +31,7 @@ public class MainPage {
 
     public void stepCheckThePageIsDisplayed(String expectedTitleText) {
         Assertions.assertEquals(expectedTitleText, driver.getTitle());
-        Assertions.assertTrue(getLogo().isDisplayed());
+        Assertions.assertTrue(logo.isDisplayed());
     }
 
     public void hoverOverInformationElement() {

@@ -1,4 +1,4 @@
-package org.autotests.task7.pages;
+package org.autotests.task7.pom;
 
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;

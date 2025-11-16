@@ -1,26 +1,16 @@
 package org.autotests.task7.tests;
 
-import lombok.SneakyThrows;
-import org.autotests.task7.pages.*;
+import org.autotests.task7.pom.*;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
 @DisplayName("Pobeda Tests")
 public class MorePobedaTests {
-
-    /*
-    Написать три автотеста, связанных с функционалом сайта «pobeda.aero».
-    При разработке автотестов необходимо использовать паттерны Page Object Model и Page Factory,
-    а также расставить явные и неявные ожидания там, где они нужны.
-
-    В тестовом файле есть 3 тестовых метода, один Before метод и один After метод. За выполнение этого пункта – 1 балл.
-     */
 
     private WebDriver driver;
     private WebDriverWait wait;
@@ -74,7 +64,6 @@ public class MorePobedaTests {
                 EXPECTED_POPUP_USEFUL_TITLE_TEXT, EXPECTED_POPUP_ABOUT_COMPANY_TITLE_TEXT);
     }
 
-    @SneakyThrows
     @DisplayName("Задание №2. Page Object. Инициирование поиска")
     @Test
     public void pobedaSearchForFlightTest() {
@@ -88,6 +77,7 @@ public class MorePobedaTests {
         searchArea.stepCheckRedBorderAroundDateOfDepartureThereInputField(EXPECTED_RED_COLOR_IN_RGB);
     }
 
+    @DisplayName("Задание №3. Page Object. Результаты поиска")
     @Test
     public void pobedaSearchForTicketOrderTest() {
         mainPage = new MainPage(driver);
@@ -97,6 +87,7 @@ public class MorePobedaTests {
         mainPage.goToManageBookingPage();
         manageBookingArea.stepCheckThePageIsDisplayed();
         manageBookingArea.stepSearchForTicketOrder("XXXXXX", "Qwerty");
+        //TODO fix
         //viewOrderTab.confirmDataInTheNewTab();
         //Assertions.assertEquals(EXPECTED_ORDER_ERROR_TEXT, viewOrderTab.getErrorMessage());
     }
