@@ -9,10 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class InformationPopup {
 
-    //By preparingForFlightTitle = By.cssSelector("a[href='/information#flight']");
-    //By usefulInfoTitle = By.cssSelector("a[href='/information#useful']");
-    //By aboutCompanyTitle = By.cssSelector("a[href='/information#company']");
-
     @Getter
     @FindBy(css = "a[href='/information#flight']")
     WebElement preparingForFlightElement;
@@ -31,18 +27,6 @@ public class InformationPopup {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
-//    private WebElement getPreparingForFlightElement() {
-//        return driver.findElement(preparingForFlightTitle);
-//    }
-
-//    private WebElement getUsefulInfoElement() {
-//        return driver.findElement(usefulInfoTitle);
-//    }
-
-//    private WebElement getAboutCompanyElement() {
-//        return driver.findElement(aboutCompanyTitle);
-//    }
 
     public void stepCheckInformationPopupModalIsDisplayed(String preparingForFlightText, String usefulInfoText,
                                                           String aboutCompanyText) {

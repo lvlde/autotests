@@ -40,6 +40,7 @@ public class MorePobedaTests {
     private static final String EXPECTED_ORDER_ERROR_TEXT = "Заказ с указанными параметрами не найден";
     private static final String FROM = "Москва";
     private static final String TO = "Санкт-Петербург";
+    private static final String EXPECTED_RED_COLOR_IN_RGB = "rgb(213, 0, 98)";
 
     @BeforeEach
     public void setUp() {
@@ -82,7 +83,7 @@ public class MorePobedaTests {
         mainPage.scrollToSearchArea();  // на новом сайте Победы как будто не актуально, но добавила, раз в задании есть
         searchArea.stepCheckTicketSearchAreaIsDisplayed();
         searchArea.stepSearchForFlight(FROM, TO);
-        searchArea.stepCheckRedBorderAroundDateOfDepartureThereInputField();
+        searchArea.stepCheckRedBorderAroundDateOfDepartureThereInputField(EXPECTED_RED_COLOR_IN_RGB);
     }
 
     @Test
