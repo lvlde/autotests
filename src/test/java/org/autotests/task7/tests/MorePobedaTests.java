@@ -25,10 +25,10 @@ public class MorePobedaTests {
     private WebDriverWait wait;
 
     private MainPage mainPage;
-    private InformationPopupModal informationPopup;
+    private InformationPopup informationPopup;
     private SearchArea searchArea;
-    private ManageBookingPage manageBookingPage;
-    private ViewOrderTab viewOrderTab;
+    private ManageBookingArea manageBookingArea;
+    private ViewOrderPage viewOrderPage;
 
     private static final String URL = "https://pobeda.aero/";
     private static final String EXPECTED_MAIN_PAGE_TITLE_TEXT =
@@ -64,7 +64,7 @@ public class MorePobedaTests {
     @Test
     public void pobedaInformationPopupTest() {
         mainPage = new MainPage(driver);
-        informationPopup = new InformationPopupModal(driver);
+        informationPopup = new InformationPopup(driver);
 
         mainPage.stepCheckThePageIsDisplayed(EXPECTED_MAIN_PAGE_TITLE_TEXT);
         mainPage.hoverOverInformationElement();
@@ -89,12 +89,12 @@ public class MorePobedaTests {
     @Test
     public void pobedaSearchForTicketOrderTest() {
         mainPage = new MainPage(driver);
-        manageBookingPage = new ManageBookingPage(driver);
+        manageBookingArea = new ManageBookingArea(driver);
 
         mainPage.stepCheckThePageIsDisplayed(EXPECTED_MAIN_PAGE_TITLE_TEXT);
         mainPage.goToManageBookingPage();
-        manageBookingPage.stepCheckThePageIsDisplayed();
-        manageBookingPage.stepSearchForTicketOrder("XXXXXX", "Qwerty");
+        manageBookingArea.stepCheckThePageIsDisplayed();
+        manageBookingArea.stepSearchForTicketOrder("XXXXXX", "Qwerty");
         //viewOrderTab.confirmDataInTheNewTab();
         //Assertions.assertEquals(EXPECTED_ORDER_ERROR_TEXT, viewOrderTab.getErrorMessage());
     }

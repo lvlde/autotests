@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class InformationPopupModal {
+public class InformationPopup {
 
     /*
     В каждом файле с POM у каждого WebElement должна быть аннотация @FindBy и функция с методом initElements().
@@ -24,7 +24,7 @@ public class InformationPopupModal {
 
     WebDriver driver;
 
-    public InformationPopupModal(WebDriver driver) {
+    public InformationPopup(WebDriver driver) {
         this.driver = driver;
     }
 

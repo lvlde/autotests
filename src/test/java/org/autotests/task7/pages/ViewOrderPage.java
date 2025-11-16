@@ -3,7 +3,7 @@ package org.autotests.task7.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class ViewOrderTab {
+public class ViewOrderPage {
 
     WebDriver driver;
 
@@ -11,7 +11,7 @@ public class ViewOrderTab {
     By submitButton = By.cssSelector("button.btn_search--order");
     By errorMessageSelector = By.cssSelector("div.message_error");
 
-    public ViewOrderTab(WebDriver driver) {
+    public ViewOrderPage(WebDriver driver) {
         this.driver = driver;
     }
 

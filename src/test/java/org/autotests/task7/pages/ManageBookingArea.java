@@ -3,15 +3,13 @@ package org.autotests.task7.pages;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.Set;
 
-public class ManageBookingPage {
+public class ManageBookingArea {
     /*
     В каждом файле с POM у каждого WebElement должна быть аннотация @FindBy и функция с методом initElements().
     За выполнение этого пункта – 1 балл. Если хотя бы в одном файле такого нет – 0 баллов.
@@ -28,7 +26,7 @@ public class ManageBookingPage {
 
     WebDriver driver;
 
-    public ManageBookingPage(WebDriver driver) {
+    public ManageBookingArea(WebDriver driver) {
         this.driver = driver;
     }
 
