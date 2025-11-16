@@ -6,6 +6,7 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -84,15 +85,6 @@ public class MorePobedaTests {
         mainPage.scrollToSearchArea();  // на новом сайте Победы как будто не актуально, но добавила, раз в задании есть
         searchArea.stepCheckTicketSearchAreaIsDisplayed();
         searchArea.stepSearchForFlight(FROM, TO);
-
-        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        //wait.until(ExpectedConditions.elementSelectionStateToBe()
-        //        .attributeToBe(driver.findElement(parentOfDateOfDepartureThereInputSelector),
-        //                "data-failed", "true"));
-
-        //String dataFailedValue = driver.findElement(parentOfDateOfDepartureThereInputSelector)
-        //        .getAttribute("data-failed");
-        Thread.sleep(3000);     //TODO fix
         searchArea.stepCheckRedBorderAroundDateOfDepartureThereInputField(EXPECTED_RED_COLOR_IN_RGB);
     }
 

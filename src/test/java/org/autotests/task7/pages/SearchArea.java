@@ -7,22 +7,28 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class SearchArea {
 
-    @Getter
     @FindBy(css = "input[placeholder='Откуда']")
     WebElement departurePointInputField;
 
-    @Getter
+    @FindBy(css = "//div[@class='dp-20s1up-root-suggestionName' and normalize-space(text())='Москва']")
+    WebElement suggestedDeparture;
+
     @FindBy(css = "input[placeholder='Куда']")
     WebElement destinationPointInputField;
 
-    @Getter
+    @FindBy(xpath = "//div[@class='dp-20s1up-root-suggestionName' and normalize-space(text())='Санкт-Петербург']")
+    WebElement suggestedDestination;
+
     @FindBy(css = "input[placeholder='Туда']")
     WebElement dateOfDepartureThereInputField;
 
-    @Getter
     @FindBy(css = "input[placeholder='Обратно']")
     WebElement dateOfDepartureBackInputField;
 
@@ -40,25 +46,30 @@ public class SearchArea {
     }
 
     public void stepCheckTicketSearchAreaIsDisplayed() {
-        Assertions.assertTrue(getDeparturePointInputField().isDisplayed());
-        Assertions.assertTrue(getDestinationPointInputField().isDisplayed());
-        Assertions.assertTrue(getDateOfDepartureThereInputField().isDisplayed());
-        Assertions.assertTrue(getDateOfDepartureBackInputField().isDisplayed());
+        Assertions.assertTrue(departurePointInputField.isDisplayed());
+        Assertions.assertTrue(destinationPointInputField.isDisplayed());
+        Assertions.assertTrue(dateOfDepartureThereInputField.isDisplayed());
+        Assertions.assertTrue(dateOfDepartureBackInputField.isDisplayed());
     }
 
     private void pickDeparturePoint(String departurePoint) {
-        String inputValue = getDeparturePointInputField().getAttribute("value");
+        String inputValue = departurePointInputField.getAttribute("value");
         if (inputValue == null) {
-            getDeparturePointInputField().sendKeys(departurePoint);
+            departurePointInputField.sendKeys(departurePoint);
+            suggestedDeparture.click();
         } else if (!inputValue.equals(departurePoint)) {
-            getDeparturePointInputField().clear();
-            getDeparturePointInputField().sendKeys(departurePoint);
+            departurePointInputField.clear();
+            departurePointInputField.sendKeys(departurePoint);
+            suggestedDeparture.click();
         }
     }
 
     private void pickDestinationPoint(String destinationPoint) {
-        getDestinationPointInputField().click();
-        getDestinationPointInputField().sendKeys(destinationPoint);
+        destinationPointInputField.click();
+        destinationPointInputField.sendKeys(destinationPoint);
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.visibilityOf(suggestedDestination));
+        suggestedDestination.click();
     }
 
     private void clickSearchButton() {
@@ -73,7 +84,8 @@ public class SearchArea {
 
     @SneakyThrows
     public void stepCheckRedBorderAroundDateOfDepartureThereInputField(String expectedRedColor) {
-        String borderColor = borderLine.getCssValue("border-color");
-        Assertions.assertEquals(expectedRedColor, borderColor);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        wait.until(driver -> borderLine.getCssValue("border-color").equals(expectedRedColor));
+        Assertions.assertEquals(expectedRedColor, borderLine.getCssValue("border-color"));
     }
 }
