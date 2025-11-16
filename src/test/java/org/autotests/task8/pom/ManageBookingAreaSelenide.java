@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$x;
 public class ManageBookingAreaSelenide {
 
     private final SelenideElement orderOrTicketNumberField =
-            $("input[placeholder='Номер бронирования']"); //сломанный селектор
+            $("input[placeholder='Номер бронирования или билета']");
     private final SelenideElement clientLastnameField =
             $("input[placeholder='Фамилия клиента']");
     private final SelenideElement searchButton =

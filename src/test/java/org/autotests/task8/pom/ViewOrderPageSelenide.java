@@ -3,6 +3,7 @@ package org.autotests.task8.pom;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
+import java.time.Duration;
 import java.util.List;
 
 import static com.codeborne.selenide.Condition.attribute;
@@ -29,7 +30,8 @@ public class ViewOrderPageSelenide {
     @Step("Подтвердить данные в новой вкладке")
     public void confirmDataInTheNewTab() {
         switchToNewTab();
-        $("title").shouldHave(attribute("text", "Просмотр заказа"));
+        $("title").shouldHave(attribute("text", "Просмотр заказа"),
+                Duration.ofSeconds(50));
         clickCheckbox();
         clickSubmitButton();
     }
