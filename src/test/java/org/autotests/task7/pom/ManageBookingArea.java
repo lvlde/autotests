@@ -2,6 +2,7 @@ package org.autotests.task7.pom;
 
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,7 +20,7 @@ public class ManageBookingArea {
     @FindBy(css = "input[placeholder='Фамилия клиента']")
     WebElement clientLastnameField;
 
-    @FindBy(xpath = "//button[.//span[contains(text(), 'Поиск')]]")
+    @FindBy(xpath = "//button[contains(@class, 'submitBtn') and .//span[contains(text(), 'Поиск')]]")
     WebElement searchButton;
 
     By orderOrTicketNumberFieldSelector = By.cssSelector("input[placeholder='Номер бронирования или билета']");
@@ -50,31 +51,12 @@ public class ManageBookingArea {
     }
 
     private void clickSearchButton() {
-        searchButton.click();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", searchButton);
     }
 
     public void stepSearchForTicketOrder(String orderOrTicketNumber, String lastname) {
         enterLastname(lastname);
         enterOrderOrTicketNumber(orderOrTicketNumber);
-
-        //String originalWindow = driver.getWindowHandle();
-        //Set<String> oldTabs = driver.getWindowHandles();
-
-        //TODO fix
         clickSearchButton();
-
-        //new WebDriverWait(driver, Duration.ofSeconds(100))
-        //        .until(driver1 -> driver1.getWindowHandles().size() > oldTabs.size());
-
-        //for (String handle : driver.getWindowHandles()) {
-        //    if (oldTabs.contains(handle)) {
-        //        driver.switchTo().window(handle);
-        //        break;
-        //    }
-        //}
-
-        //new WebDriverWait(driver, Duration.ofSeconds(10))
-        //        .until(web -> ((JavascriptExecutor) web)
-        //                .executeScript("return document.readyState").toString().equals("complete"));
     }
 }

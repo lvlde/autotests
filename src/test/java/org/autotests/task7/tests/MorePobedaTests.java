@@ -14,7 +14,6 @@ public class MorePobedaTests {
 
     private WebDriver driver;
     private WebDriverWait wait;
-
     private MainPage mainPage;
     private InformationPopup informationPopup;
     private SearchArea searchArea;
@@ -82,14 +81,16 @@ public class MorePobedaTests {
     public void pobedaSearchForTicketOrderTest() {
         mainPage = new MainPage(driver);
         manageBookingArea = new ManageBookingArea(driver);
+        viewOrderPage = new ViewOrderPage(driver);
 
         mainPage.stepCheckThePageIsDisplayed(EXPECTED_MAIN_PAGE_TITLE_TEXT);
         mainPage.goToManageBookingPage();
         manageBookingArea.stepCheckThePageIsDisplayed();
         manageBookingArea.stepSearchForTicketOrder("XXXXXX", "Qwerty");
-        //TODO fix
-        //viewOrderTab.confirmDataInTheNewTab();
-        //Assertions.assertEquals(EXPECTED_ORDER_ERROR_TEXT, viewOrderTab.getErrorMessage());
+
+        String originalHandle = driver.getWindowHandle();
+        viewOrderPage.confirmDataInTheNewTab(originalHandle);
+        Assertions.assertEquals(EXPECTED_ORDER_ERROR_TEXT, viewOrderPage.getErrorMessage());
     }
 
     @AfterEach
