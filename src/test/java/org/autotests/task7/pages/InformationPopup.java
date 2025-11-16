@@ -1,44 +1,48 @@
 package org.autotests.task7.pages;
 
+import lombok.Getter;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class InformationPopup {
 
-    /*
-    В каждом файле с POM у каждого WebElement должна быть аннотация @FindBy и функция с методом initElements().
-    За выполнение этого пункта – 1 балл. Если хотя бы в одном файле такого нет – 0 баллов.
+    //By preparingForFlightTitle = By.cssSelector("a[href='/information#flight']");
+    //By usefulInfoTitle = By.cssSelector("a[href='/information#useful']");
+    //By aboutCompanyTitle = By.cssSelector("a[href='/information#company']");
 
-    В каждом файле с POM названия переменных несут смысл их назначения, названия функций также несут смысловую нагрузку.
-Если все это выполнено – 2 балла. Если пара переменных или названий функций не несут смысла их назначения, то оценка – 1 балл. Если больше двух – 0 баллов.
+    @Getter
+    @FindBy(css = "a[href='/information#flight']")
+    WebElement preparingForFlightElement;
 
-===========
+    @Getter
+    @FindBy(css = "a[href='/information#useful']")
+    WebElement usefulInfoElement;
 
-Убедиться, что появилось всплывающее окно, которое содержит следующие заголовки: «Подготовка к полету», «Полезная информация», «О компании».
-     */
-    By preparingForFlightTitle = By.cssSelector("a[href='/information#flight']");
-    By usefulInfoTitle = By.cssSelector("a[href='/information#useful']");
-    By aboutCompanyTitle = By.cssSelector("a[href='/information#company']");
+    @Getter
+    @FindBy(css = "a[href='/information#company']")
+    WebElement aboutCompanyElement;
 
     WebDriver driver;
 
     public InformationPopup(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-    private WebElement getPreparingForFlightElement() {
-        return driver.findElement(preparingForFlightTitle);
-    }
+//    private WebElement getPreparingForFlightElement() {
+//        return driver.findElement(preparingForFlightTitle);
+//    }
 
-    private WebElement getUsefulInfoElement() {
-        return driver.findElement(usefulInfoTitle);
-    }
+//    private WebElement getUsefulInfoElement() {
+//        return driver.findElement(usefulInfoTitle);
+//    }
 
-    private WebElement getAboutCompanyElement() {
-        return driver.findElement(aboutCompanyTitle);
-    }
+//    private WebElement getAboutCompanyElement() {
+//        return driver.findElement(aboutCompanyTitle);
+//    }
 
     public void stepCheckInformationPopupModalIsDisplayed(String preparingForFlightText, String usefulInfoText,
                                                           String aboutCompanyText) {

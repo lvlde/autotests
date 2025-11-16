@@ -85,7 +85,6 @@ public class MorePobedaTests {
         searchArea.stepCheckRedBorderAroundDateOfDepartureThereInputField();
     }
 
-    @SneakyThrows
     @Test
     public void pobedaSearchForTicketOrderTest() {
         mainPage = new MainPage(driver);

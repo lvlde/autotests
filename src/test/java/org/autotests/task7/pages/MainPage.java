@@ -1,5 +1,6 @@
 package org.autotests.task7.pages;
 
+import lombok.Getter;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
@@ -7,30 +8,35 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class MainPage {
-    /*
-    В каждом файле с POM у каждого WebElement должна быть аннотация @FindBy и функция с методом initElements().
-    За выполнение этого пункта – 1 балл. Если хотя бы в одном файле такого нет – 0 баллов.
-
-========
-2. Убедиться, что сайт открылся:
-б) на странице есть логотип Победы.
-3. Навести мышку на пункт «Информация».
-     */
 
     WebDriver driver;
 
-    By logo = By.cssSelector("img[src='/_next/static/media/logo-rus-white.b9d69d0a.svg']");
-    By informationElement = By.cssSelector("a[href='/information']");
-    By ticketSearchAreaSelector = By.cssSelector(".dp-1e3lq48-root-card");
+    // By logo = By.cssSelector("img[src='/_next/static/media/logo-rus-white.b9d69d0a.svg']");
+    //By informationElement = By.cssSelector("a[href='/information']");
+    //By ticketSearchAreaSelector = By.cssSelector(".dp-1e3lq48-root-card");
 
-    //TODO пункт «Управление бронированием»:
-    private By manageBookingButtonSelector =
-            By.xpath("//button[.//span[contains(text(), 'Управление бронированием')]]");
+    @Getter
+    @FindBy(css = "img[src='/_next/static/media/logo-rus-white.b9d69d0a.svg']")
+    WebElement logo;
+
+    @FindBy(css = "a[href='/information']")
+    WebElement informationElement;
+
+    @FindBy(css = ".dp-1e3lq48-root-card")
+    WebElement ticketSearchArea;
+
+    @FindBy(xpath = "//button[.//span[contains(text(), 'Управление бронированием')]]")
+    WebElement manageBookingButton;
+    //private By manageBookingButtonSelector =
+    //        By.xpath("//button[.//span[contains(text(), 'Управление бронированием')]]");
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public void stepCheckThePageIsDisplayed(String expectedTitleText) {
@@ -38,23 +44,18 @@ public class MainPage {
         Assertions.assertTrue(getLogo().isDisplayed());
     }
 
-    public WebElement getLogo() {
-        return driver.findElement(logo);
-    }
-
     public void hoverOverInformationElement() {
-        WebElement element = driver.findElement(informationElement);
         Actions actions = new Actions(driver);
-        actions.moveToElement(element).perform();
+        actions.moveToElement(informationElement).perform();
     }
 
     public void goToManageBookingPage() {
-        driver.findElement(manageBookingButtonSelector).click();
+        manageBookingButton.click();
     }
 
     public void scrollToSearchArea() {
-        WebElement searchArea = driver.findElement(ticketSearchAreaSelector);
+        //WebElement searchArea = driver.findElement(ticketSearchAreaSelector);
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-        jsExecutor.executeScript("arguments[0].scrollIntoView(true);", searchArea);
+        jsExecutor.executeScript("arguments[0].scrollIntoView(true);", ticketSearchArea);
     }
 }
