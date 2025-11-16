@@ -1,55 +1,61 @@
 package org.autotests.task7.pages;
 
+import lombok.Getter;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
 public class ManageBookingArea {
-    /*
-    В каждом файле с POM у каждого WebElement должна быть аннотация @FindBy и функция с методом initElements().
-    За выполнение этого пункта – 1 балл. Если хотя бы в одном файле такого нет – 0 баллов.
 
-============
+    @Getter
+    @FindBy(css = "input[placeholder='Номер бронирования или билета']")
+    WebElement orderOrTicketNumberField;
 
-6. Убедиться, что в новой вкладке на экране отображается текст ошибки «Заказ с указанными параметрами не найден».
+    @Getter
+    @FindBy(css = "input[placeholder='Фамилия клиента']")
+    WebElement clientLastnameField;
 
-     */
+    @Getter
+    @FindBy(xpath = "//button[.//span[contains(text(), 'Поиск')]]")
+    WebElement searchButton;
 
     By orderOrTicketNumberFieldSelector = By.cssSelector("input[placeholder='Номер бронирования или билета']");
-    By clientLastnameFieldSelector = By.cssSelector("input[placeholder='Фамилия клиента']");
-    By searchButtonSelector = By.xpath("//button[.//span[contains(text(), 'Поиск')]]");
 
     WebDriver driver;
 
     public ManageBookingArea(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public void stepCheckThePageIsDisplayed() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(orderOrTicketNumberFieldSelector));
-        Assertions.assertTrue(driver.findElement(orderOrTicketNumberFieldSelector).isDisplayed());
-        Assertions.assertTrue(driver.findElement(clientLastnameFieldSelector).isDisplayed());
-        Assertions.assertTrue(driver.findElement(searchButtonSelector).isDisplayed());
+        Assertions.assertTrue(orderOrTicketNumberField.isDisplayed());
+        Assertions.assertTrue(clientLastnameField.isDisplayed());
+        Assertions.assertTrue(searchButton.isDisplayed());
     }
 
     private void enterOrderOrTicketNumber(String orderOrTicketNumber) {
-        driver.findElement(orderOrTicketNumberFieldSelector).click();
-        driver.findElement(orderOrTicketNumberFieldSelector).sendKeys(orderOrTicketNumber);
+        orderOrTicketNumberField.click();
+        orderOrTicketNumberField.sendKeys(orderOrTicketNumber);
     }
 
     private void enterLastname(String lastname) {
-        driver.findElement(clientLastnameFieldSelector).click();
-        driver.findElement(clientLastnameFieldSelector).sendKeys(lastname);
+        clientLastnameField.click();
+        clientLastnameField.sendKeys(lastname);
     }
 
     private void clickSearchButton() {
-        driver.findElement(searchButtonSelector).click();
+        searchButton.click();
     }
 
     @SneakyThrows
@@ -57,7 +63,7 @@ public class ManageBookingArea {
         enterLastname(lastname);
         enterOrderOrTicketNumber(orderOrTicketNumber);
 
-
+        //TODO fix
         //String originalWindow = driver.getWindowHandle();
         //Set<String> oldTabs = driver.getWindowHandles();
 
@@ -77,6 +83,5 @@ public class ManageBookingArea {
         //new WebDriverWait(driver, Duration.ofSeconds(10))
         //        .until(web -> ((JavascriptExecutor) web)
         //                .executeScript("return document.readyState").toString().equals("complete"));
-
     }
 }

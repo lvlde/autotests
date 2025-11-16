@@ -73,16 +73,7 @@ public class SearchArea {
 
     @SneakyThrows
     public void stepCheckRedBorderAroundDateOfDepartureThereInputField(String expectedRedColor) {
-        Thread.sleep(3000);     //TODO fix
         String borderColor = borderLine.getCssValue("border-color");
         Assertions.assertEquals(expectedRedColor, borderColor);
-
-        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        //wait.until(ExpectedConditions.elementSelectionStateToBe()
-        //        .attributeToBe(driver.findElement(parentOfDateOfDepartureThereInputSelector),
-        //                "data-failed", "true"));
-
-        //String dataFailedValue = driver.findElement(parentOfDateOfDepartureThereInputSelector)
-        //        .getAttribute("data-failed");
     }
 }

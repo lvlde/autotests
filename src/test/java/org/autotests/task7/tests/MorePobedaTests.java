@@ -73,6 +73,7 @@ public class MorePobedaTests {
                 EXPECTED_POPUP_USEFUL_TITLE_TEXT, EXPECTED_POPUP_ABOUT_COMPANY_TITLE_TEXT);
     }
 
+    @SneakyThrows
     @DisplayName("Задание №2. Page Object. Инициирование поиска")
     @Test
     public void pobedaSearchForFlightTest() {
@@ -83,6 +84,15 @@ public class MorePobedaTests {
         mainPage.scrollToSearchArea();  // на новом сайте Победы как будто не актуально, но добавила, раз в задании есть
         searchArea.stepCheckTicketSearchAreaIsDisplayed();
         searchArea.stepSearchForFlight(FROM, TO);
+
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        //wait.until(ExpectedConditions.elementSelectionStateToBe()
+        //        .attributeToBe(driver.findElement(parentOfDateOfDepartureThereInputSelector),
+        //                "data-failed", "true"));
+
+        //String dataFailedValue = driver.findElement(parentOfDateOfDepartureThereInputSelector)
+        //        .getAttribute("data-failed");
+        Thread.sleep(3000);     //TODO fix
         searchArea.stepCheckRedBorderAroundDateOfDepartureThereInputField(EXPECTED_RED_COLOR_IN_RGB);
     }
 
